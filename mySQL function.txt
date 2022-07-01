@@ -1,0 +1,9 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `maxprice`(agentid int) RETURNS int(11)
+BEGIN
+  declare price int;
+  while agentid <= 4 do
+  select max(houses.price) into price from houses where houses.relatedagentid = AGENTID;
+  set agentid = agentid + 1;
+  return (price);
+  end while;
+END
